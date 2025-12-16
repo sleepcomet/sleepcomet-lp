@@ -1,0 +1,142 @@
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+
+export function Navbar() {
+  const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
+
+  return (
+    <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-xl border-b border-border/50">
+      <div className="max-w-5xl mx-auto px-6 lg:px-0 h-16 flex items-center justify-between">
+        {/* Left Side: Logo + Navigation Links */}
+        <div className="flex items-center gap-8">
+          <Link href="/" className="flex items-center gap-2 font-bold text-xl tracking-tighter">
+            <Image src="/sleepcomet.png" alt="SleepComet" width={144} height={40} className="w-36 h-auto invert dark:invert-0" />
+          </Link>
+
+          <div className="hidden md:flex items-center gap-1">
+            {/* Product Mega Menu */}
+            <div
+              className="relative"
+              onMouseEnter={() => setActiveMegaMenu("product")}
+              onMouseLeave={() => setActiveMegaMenu(null)}
+            >
+              <button className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors rounded-xl cursor-pointer">
+                Product
+                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${activeMegaMenu === "product" ? "rotate-180" : ""}`} />
+              </button>
+
+              {activeMegaMenu === "product" && (
+                <div className="absolute left-0 top-full pt-2 w-screen max-w-4xl">
+                  <div className="bg-popover border border-border rounded-lg shadow-2xl p-8 animate-in fade-in-0 slide-in-from-top-2 duration-200">
+                    <div className="grid grid-cols-4 gap-6">
+                      {/* Featured Card */}
+                      <div className="col-span-1">
+                        <Link
+                          href="/"
+                          className="block p-6 rounded-lg bg-linear-to-br from-primary/10 via-primary/5 to-transparent hover:from-primary/20 transition-all group"
+                        >
+                          <Image src="/sleepcomet.png" alt="SleepComet" width={100} height={30} className="w-24 h-auto mb-4" />
+                          <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">SleepComet</h3>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            Reliable uptime monitoring for your peace of mind.
+                          </p>
+                        </Link>
+                      </div>
+
+                      {/* Links Grid */}
+                      <div className="col-span-3 grid grid-cols-2 gap-3">
+                        <Link href="/features" className="group p-4 rounded-lg hover:bg-accent transition-colors">
+                          <h4 className="font-semibold mb-1 group-hover:text-primary transition-colors">Features</h4>
+                          <p className="text-sm text-muted-foreground">Explore all our powerful monitoring tools.</p>
+                        </Link>
+
+                        <Link href="/status-pages" className="group p-4 rounded-lg hover:bg-accent transition-colors">
+                          <h4 className="font-semibold mb-1 group-hover:text-primary transition-colors">Status Pages</h4>
+                          <p className="text-sm text-muted-foreground">Beautiful status pages for your users.</p>
+                        </Link>
+
+                        <Link href="/integrations" className="group p-4 rounded-lg hover:bg-accent transition-colors">
+                          <h4 className="font-semibold mb-1 group-hover:text-primary transition-colors">Integrations</h4>
+                          <p className="text-sm text-muted-foreground">Connect with Slack, Discord, and more.</p>
+                        </Link>
+
+                        <Link href="/api" className="group p-4 rounded-lg hover:bg-accent transition-colors">
+                          <h4 className="font-semibold mb-1 group-hover:text-primary transition-colors">API</h4>
+                          <p className="text-sm text-muted-foreground">Programmatic access to your data.</p>
+                        </Link>
+
+                        <Link href="/pricing" className="group p-4 rounded-lg hover:bg-accent transition-colors">
+                          <h4 className="font-semibold mb-1 group-hover:text-primary transition-colors">Pricing</h4>
+                          <p className="text-sm text-muted-foreground">Plans for every stage of growth.</p>
+                        </Link>
+
+                        <Link href="/how-it-works" className="group p-4 rounded-lg hover:bg-accent transition-colors">
+                          <h4 className="font-semibold mb-1 group-hover:text-primary transition-colors">How it Works</h4>
+                          <p className="text-sm text-muted-foreground">See how SleepComet monitors your services.</p>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Resources Mega Menu */}
+            <div
+              className="relative"
+              onMouseEnter={() => setActiveMegaMenu("resources")}
+              onMouseLeave={() => setActiveMegaMenu(null)}
+            >
+              <button className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors rounded-xl cursor-pointer">
+                Resources
+                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${activeMegaMenu === "resources" ? "rotate-180" : ""}`} />
+              </button>
+
+              {activeMegaMenu === "resources" && (
+                <div className="absolute left-0 top-full pt-2 w-screen max-w-4xl">
+                  <div className="bg-popover border border-border rounded-lg shadow-2xl p-8 animate-in fade-in-0 slide-in-from-top-2 duration-200">
+                    <div className="grid grid-cols-4 gap-6">
+                      <div className="col-span-4 grid grid-cols-3 gap-6">
+                        <Link href="/docs" className="group p-4 rounded-lg hover:bg-accent transition-colors">
+                          <h4 className="font-semibold mb-1 group-hover:text-primary transition-colors">Documentation</h4>
+                          <p className="text-sm text-muted-foreground">Guides, tutorials, and API reference.</p>
+                        </Link>
+                        <Link href="/blog" className="group p-4 rounded-lg hover:bg-accent transition-colors">
+                          <h4 className="font-semibold mb-1 group-hover:text-primary transition-colors">Blog</h4>
+                          <p className="text-sm text-muted-foreground">Latest news, updates, and engineering posts.</p>
+                        </Link>
+                        <Link href="/community" className="group p-4 rounded-lg hover:bg-accent transition-colors">
+                          <h4 className="font-semibold mb-1 group-hover:text-primary transition-colors">Community</h4>
+                          <p className="text-sm text-muted-foreground">Join our Discord and connect with other users.</p>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <Link href="/pricing" className="text-sm font-medium text-foreground hover:text-primary transition-colors px-4 py-2">
+              Pricing
+            </Link>
+          </div>
+        </div>
+
+        {/* Right Side: Auth Buttons */}
+        <div className="flex items-center gap-4">
+          <Button variant="ghost" asChild className="hidden sm:inline-flex">
+            <Link href="/login">Log in</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/register">Get Started</Link>
+          </Button>
+        </div>
+      </div>
+    </nav>
+  );
+}
