@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.1",
     "@hookform/resolvers": "^5.2.2",
     "@hotwired/turbo": "^8.0.20",
     "@microsoft/clarity": "^1.0.2",
@@ -45,6 +46,7 @@
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
+    "gsap": "^3.12.5",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.556.0",
     "next": "16.0.10",
