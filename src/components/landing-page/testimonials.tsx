@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const testimonials = [
@@ -24,8 +24,11 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section className="py-24 bg-neutral-900/30 border-y border-neutral-800">
-      <div className="container mx-auto px-4 max-w-5xl">
+    <section className="py-24 bg-background relative overflow-hidden">
+      {/* Space Gradient */}
+      <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-primary/10 via-background/0 to-background/0" />
+
+      <div className="max-w-5xl mx-auto px-6 lg:px-0">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tighter mb-4">Trusted by Developers</h2>
           <p className="text-muted-foreground">Join thousands of developers who trust SleepComet.</p>
@@ -33,19 +36,19 @@ export function TestimonialsSection() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((t, i) => (
-            <Card key={i} className="bg-neutral-900/50 border-neutral-800 backdrop-blur-sm">
+            <Card key={i} className="bg-card border-border backdrop-blur-sm">
               <CardHeader className="flex flex-row items-center gap-4 pb-2">
                 <Avatar>
-                  <AvatarFallback className="bg-blue-600 text-white">{t.avatar}</AvatarFallback>
+                  <AvatarFallback className="bg-primary text-primary-foreground">{t.avatar}</AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="font-medium text-sm text-white">{t.name}</p>
-                  <p className="text-xs text-neutral-400">{t.role}</p>
+                  <p className="font-medium text-sm text-card-foreground">{t.name}</p>
+                  <p className="text-xs text-muted-foreground">{t.role}</p>
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-neutral-300 leading-relaxed text-sm">
-                  "{t.content}"
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  &quot;{t.content}&quot;
                 </p>
               </CardContent>
             </Card>

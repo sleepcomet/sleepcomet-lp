@@ -15,7 +15,7 @@ export function Navbar() {
         {/* Left Side: Logo + Navigation Links */}
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-2 font-bold text-xl tracking-tighter">
-            <Image src="/sleepcomet.png" alt="SleepComet" width={144} height={40} className="w-36 h-auto invert dark:invert-0" />
+            <Image src="/logo.svg" alt="SleepComet" width={144} height={40} className="invert dark:invert-0" />
           </Link>
 
           <div className="hidden md:flex items-center gap-1">
@@ -40,7 +40,7 @@ export function Navbar() {
                           href="/"
                           className="block p-6 rounded-lg bg-linear-to-br from-primary/10 via-primary/5 to-transparent hover:from-primary/20 transition-all group"
                         >
-                          <Image src="/sleepcomet.png" alt="SleepComet" width={100} height={30} className="w-24 h-auto mb-4" />
+                          <Image src="/logo.svg" alt="SleepComet" width={100} height={30} className="mb-4" />
                           <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">SleepComet</h3>
                           <p className="text-sm text-muted-foreground leading-relaxed">
                             Reliable uptime monitoring for your peace of mind.

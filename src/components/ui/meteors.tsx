@@ -23,21 +23,20 @@ export const Meteors = ({
   angle = 215,
   className,
 }: MeteorsProps) => {
-  const [meteorStyles, setMeteorStyles] = useState<Array<React.CSSProperties>>(
-    []
-  )
+  const [meteorStyles, setMeteorStyles] = useState<Array<React.CSSProperties>>([])
 
   useEffect(() => {
     const styles = [...new Array(number)].map(() => ({
       "--angle": -angle + "deg",
       top: "-5%",
-      left: `calc(0% + ${Math.floor(Math.random() * window.innerWidth)}px)`,
+      left: Math.floor(Math.random() * 100) + "%",
       animationDelay: Math.random() * (maxDelay - minDelay) + minDelay + "s",
       animationDuration:
         Math.floor(Math.random() * (maxDuration - minDuration) + minDuration) +
         "s",
     }))
-    setMeteorStyles(styles)
+    const timer = setTimeout(() => setMeteorStyles(styles), 0)
+    return () => clearTimeout(timer)
   }, [number, minDelay, maxDelay, minDuration, maxDuration, angle])
 
   return (

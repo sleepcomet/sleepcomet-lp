@@ -1,17 +1,17 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ThemeSwitch } from "@/components/theme-switch";
+import Image from "next/image";
 
 export function Footer() {
   return (
-    <footer className="bg-background pt-32 pb-12 overflow-hidden border-t border-foreground/5">
-      <div className="border-b border-foreground/5">
+    <footer className="pt-32 pb-12 overflow-hidden border-t border-foreground/5">
+      <div>
         <div className="max-w-5xl mx-auto px-6 lg:px-0">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-32 ">
             <div className="col-span-2 lg:col-span-2">
               <Link href="/" className="flex items-center gap-2 font-bold text-xl tracking-tighter mb-6">
-                <Image src="/sleepcomet.png" alt="SleepComet" width={128} height={35} className="w-32 h-auto invert dark:invert-0" />
+                <Image src="/logo.svg" alt="SleepComet" width={128} height={35} className="w-32 h-auto invert dark:invert-0" />
               </Link>
               <p className="text-muted-foreground mb-6 max-w-sm leading-relaxed text-lg">
                 Reliable uptime monitoring for your peace of mind.
@@ -99,8 +99,38 @@ export function Footer() {
                 <li><Link href="/help" className="hover:text-primary transition-colors">Help Center</Link></li>
               </ul>
             </div>
+
+            <div className="space-y-6">
+              <h4 className="font-semibold text-foreground tracking-tight text-lg">Company</h4>
+              <ul className="space-y-4 text-sm text-muted-foreground">
+                <li><Link href="/about" className="hover:text-primary transition-colors">About</Link></li>
+                <li><Link href="/careers" className="hover:text-primary transition-colors">Careers</Link></li>
+                <li><Link href="/legal" className="hover:text-primary transition-colors">Legal</Link></li>
+                <li><Link href="/legal/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
+                <li><Link href="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 mb-24">
+            <div className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} SleepComet Inc. All rights reserved.
+            </div>
+            <div className="flex gap-8 text-sm text-muted-foreground">
+              <Link href="/legal/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
+              <Link href="/legal/terms" className="hover:text-foreground transition-colors">Terms</Link>
+              <Link href="/legal/sitemap" className="hover:text-foreground transition-colors">Sitemap</Link>
+              <Link href="/legal/cookies" className="hover:text-foreground transition-colors">Cookies</Link>
+            </div>
           </div>
         </div>
+      </div>
+
+      {/* Huge Text */}
+      <div className="w-full flex justify-center items-center opacity-[0.08] pointer-events-none select-none overflow-hidden mt-4">
+        <span className="text-[18vw] md:text-[18vw] font-bold tracking-tighter leading-none whitespace-nowrap bg-linear-to-b from-foreground to-transparent bg-clip-text text-transparent">
+          Sleepcomet
+        </span>
       </div>
     </footer>
   );
