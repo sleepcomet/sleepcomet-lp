@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next"
+import { MicrosoftClarity, GoogleTagManager } from '@next/third-parties/google'
 import Script from "next/script";
 import { TurboInit } from "@/components/turbo-init";
 import { UmamiAnalytics } from "@/components/umami-analytics";
