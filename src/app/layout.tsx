@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next"
 import Script from "next/script";
 import { TurboInit } from "@/components/turbo-init";
+import { UmamiAnalytics } from "@/components/umami-analytics";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -75,6 +76,7 @@ export default function RootLayout({
         >
           <Analytics />
           <TurboInit />
+          <UmamiAnalytics />
           {children}
         </ThemeProvider>
       </body>
