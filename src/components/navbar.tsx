@@ -98,30 +98,22 @@ export function Navbar() {
               </button>
 
               {activeMegaMenu === "resources" && (
-                <div className="absolute left-0 top-full pt-2 w-screen max-w-4xl">
-                  <div className="bg-popover border border-border rounded-lg shadow-2xl p-8 animate-in fade-in-0 slide-in-from-top-2 duration-200">
-                    <div className="grid grid-cols-4 gap-6">
-                      <div className="col-span-4 grid grid-cols-3 gap-6">
-                        <Link href="/docs" className="group p-4 rounded-lg hover:bg-accent transition-colors">
-                          <h4 className="font-semibold mb-1 group-hover:text-primary transition-colors">Documentation</h4>
-                          <p className="text-sm text-muted-foreground">Guides, tutorials, and API reference.</p>
-                        </Link>
-                        <Link href="/blog" className="group p-4 rounded-lg hover:bg-accent transition-colors">
-                          <h4 className="font-semibold mb-1 group-hover:text-primary transition-colors">Blog</h4>
-                          <p className="text-sm text-muted-foreground">Latest news, updates, and engineering posts.</p>
-                        </Link>
-                        <Link href="/community" className="group p-4 rounded-lg hover:bg-accent transition-colors">
-                          <h4 className="font-semibold mb-1 group-hover:text-primary transition-colors">Community</h4>
-                          <p className="text-sm text-muted-foreground">Join our Discord and connect with other users.</p>
-                        </Link>
-                      </div>
-                    </div>
+                <div className="absolute left-0 top-full pt-2 w-64">
+                  <div className="bg-popover border border-border rounded-lg shadow-2xl p-2 animate-in fade-in-0 slide-in-from-top-2 duration-200">
+                    <Link href="/blog" className="block px-4 py-3 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors">
+                      <div className="text-sm font-medium">Blog</div>
+                      <div className="text-xs text-muted-foreground">Latest news and guides</div>
+                    </Link>
+                    <Link href="/docs" className="block px-4 py-3 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors">
+                      <div className="text-sm font-medium">Documentation</div>
+                      <div className="text-xs text-muted-foreground">Guides and API reference</div>
+                    </Link>
                   </div>
                 </div>
               )}
             </div>
 
-            <Link href="/pricing" className="text-sm font-medium text-foreground hover:text-primary transition-colors px-4 py-2">
+            <Link href="/pricing" className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors rounded-xl">
               Pricing
             </Link>
           </div>
@@ -130,10 +122,10 @@ export function Navbar() {
         {/* Right Side: Auth Buttons */}
         <div className="flex items-center gap-4">
           <Button variant="ghost" asChild className="hidden sm:inline-flex">
-            <Link href="/login">Log in</Link>
+            <a href={`${process.env.NEXT_PUBLIC_CONSOLE_URL}/auth/signin`}>Log in</a>
           </Button>
           <Button asChild>
-            <Link href="/register">Get Started</Link>
+            <a href={`${process.env.NEXT_PUBLIC_CONSOLE_URL}/auth/signin?plan=free`}>Get Started</a>
           </Button>
         </div>
       </div>
