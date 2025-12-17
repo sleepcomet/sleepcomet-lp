@@ -129,13 +129,20 @@ const COMPARISON_FEATURES = [
   }
 ];
 
+import { useSession } from "@/hooks/use-session";
+
 export function PricingSection() {
-  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
+  const { session, loading } = useSession();
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
+
+  const currentPlan = (loading ? undefined : session?.user?.plan?.toLowerCase()) || 'free';
+  const planOrder = ['free', 'solo', 'pro', 'business'];
+  const currentPlanIndex = planOrder.indexOf(currentPlan);
 
   return (
     <section id="pricing" className="py-24 bg-background relative overflow-hidden">
-       {/* Background Elements */}
-       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-background to-background pointer-events-none" />
+      {/* Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-background to-background pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-6 lg:px-0 relative z-10">
         <div className="text-center space-y-4 mb-10">
@@ -166,7 +173,12 @@ export function PricingSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
           {PLANS.map((plan) => {
             const price = billingCycle === "monthly" ? plan.prices.monthly : plan.prices.yearly;
-            
+
+            const isCurrentPlan = plan.slug === currentPlan;
+            const planIndex = planOrder.indexOf(plan.slug);
+            const isDowngrade = planIndex < currentPlanIndex;
+            const isDisabled = isCurrentPlan || isDowngrade;
+
             return (
               <Card key={plan.slug} className={`flex flex-col relative ${plan.popular ? 'border-primary shadow-lg shadow-primary/20 scale-105 z-10' : 'border-border'}`}>
                 {plan.popular && (
@@ -182,9 +194,9 @@ export function PricingSection() {
                     <span className="text-sm font-normal text-muted-foreground ml-1">/mo</span>
                   </div>
                   {billingCycle === "yearly" && price > 0 && (
-                      <p className="text-xs text-muted-foreground mt-1">
-                          Billed yearly
-                      </p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Billed yearly
+                    </p>
                   )}
                 </CardHeader>
                 <CardContent className="flex-1">
@@ -204,8 +216,16 @@ export function PricingSection() {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full" variant={plan.popular ? "default" : "outline"} asChild>
-                    <a href={`${plan.href}&interval=${billingCycle}`}>{plan.buttonText}</a>
+                  <Button className="w-full" variant={plan.popular ? "default" : "outline"} disabled={isDisabled || loading} asChild={!isDisabled && !loading}>
+                    {loading ? (
+                      "Loading..."
+                    ) : isCurrentPlan ? (
+                      "Current Plan"
+                    ) : isDowngrade ? (
+                      "Included"
+                    ) : (
+                      <a href={`${plan.href}&interval=${billingCycle}`}>{plan.buttonText}</a>
+                    )}
                   </Button>
                 </CardFooter>
               </Card>

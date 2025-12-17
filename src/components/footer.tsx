@@ -11,7 +11,14 @@ export function Footer() {
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-32 ">
             <div className="col-span-2 lg:col-span-2">
               <Link href="/" className="flex items-center gap-2 font-bold text-xl tracking-tighter mb-6">
-                <Image src="/logo.svg" alt="SleepComet" width={128} height={35} className="w-32 h-auto invert dark:invert-0" />
+                <Image 
+                  src="/logo.svg" 
+                  alt="SleepComet" 
+                  width={128} 
+                  height={35} 
+                  className="w-32 h-auto invert dark:invert-0"
+                  style={{ width: 'auto', height: 'auto' }}
+                />
               </Link>
               <p className="text-muted-foreground mb-6 max-w-sm leading-relaxed text-lg">
                 Reliable uptime monitoring for your peace of mind.

@@ -6,7 +6,10 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
+import { useSession } from "@/hooks/use-session";
+
 export function Navbar() {
+  const { session, loading } = useSession();
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
 
   return (
@@ -40,7 +43,7 @@ export function Navbar() {
                           href="/"
                           className="block p-6 rounded-lg bg-linear-to-br from-primary/10 via-primary/5 to-transparent hover:from-primary/20 transition-all group"
                         >
-                          <Image src="/logo.svg" alt="SleepComet" width={100} height={30} className="mb-4" />
+                          <Image src="/logo.svg" alt="SleepComet" width={100} height={30} className="mb-4 h-auto" />
                           <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">SleepComet</h3>
                           <p className="text-sm text-muted-foreground leading-relaxed">
                             Reliable uptime monitoring for your peace of mind.
@@ -121,12 +124,22 @@ export function Navbar() {
 
         {/* Right Side: Auth Buttons */}
         <div className="flex items-center gap-4">
-          <Button variant="ghost" asChild className="hidden sm:inline-flex">
-            <a href={`${process.env.NEXT_PUBLIC_CONSOLE_URL}/auth/signin`}>Log in</a>
-          </Button>
-          <Button asChild>
-            <a href={`${process.env.NEXT_PUBLIC_CONSOLE_URL}/auth/signin?plan=free`}>Get Started</a>
-          </Button>
+          {loading ? (
+             <div className="w-24 h-9 bg-muted/20 animate-pulse rounded-md" />
+          ) : session ? (
+             <Button asChild>
+               <a href={`${process.env.NEXT_PUBLIC_CONSOLE_URL}`}>Dashboard</a>
+             </Button>
+          ) : (
+            <>
+              <Button variant="ghost" asChild className="hidden sm:inline-flex">
+                <a href={`${process.env.NEXT_PUBLIC_CONSOLE_URL}/auth/signin`}>Log in</a>
+              </Button>
+              <Button asChild>
+                <a href={`${process.env.NEXT_PUBLIC_CONSOLE_URL}/auth/signin?plan=free`}>Get Started</a>
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </nav>

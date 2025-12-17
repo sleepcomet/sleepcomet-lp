@@ -7,6 +7,8 @@ import { UmamiAnalytics } from "@/components/umami-analytics";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
+import { QueryProvider } from "@/components/query-provider";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -74,10 +76,12 @@ export default function RootLayout({
           storageKey="sleepcomet-theme"
           disableTransitionOnChange
         >
-          <Analytics />
-          <TurboInit />
-          <UmamiAnalytics />
-          {children}
+          <QueryProvider>
+            <Analytics />
+            <TurboInit />
+            <UmamiAnalytics />
+            {children}
+          </QueryProvider>
         </ThemeProvider>
       </body>
     </html>
